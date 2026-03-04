@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name         HH Auto-Fill - All-in-One
-// @namespace    tampermonkey.net/
+// @namespace    https://github.com/ESHubDelivery/HubHeroes
 // @version      3.0
 // @description  Rellena y envía automáticamente el survey HH_SIM_Test con un solo clic
+// @author       HubHeroes Team
 // @match        https://pulse.aws/survey/KERWN7PR*
 // @updateURL    https://raw.githubusercontent.com/ESHubDelivery/HubHeroes/main/auto-fill-script.user.js
-// @downloadURL  https://raw.githubusercontent.com/ESHubDelivery/HubHeroes/main/auto-fill-script.user.js
+// @downloadURL  https://raw.githubusercontent.com/ESHubDelivery/HubHeroes/main/auto-fill-script.user.js
+// @homepageURL  https://github.com/ESHubDelivery/HubHeroes
 // @grant        window.close
 // ==/UserScript==
 
