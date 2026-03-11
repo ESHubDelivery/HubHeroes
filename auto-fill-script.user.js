@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HH Auto-Fill - All-in-One
 // @namespace    tampermonkey.net/
-// @version      3.1
+// @version      3.2
 // @description  Rellena y envía automáticamente el survey HH_SIM_Test con un solo clic
 // @author       HubHeroes Team
 // @match        https://pulse.aws/survey/KERWN7PR*
@@ -70,14 +70,20 @@
         const urlParams = new URLSearchParams(window.location.search);
         const storeField = document.querySelector(`textarea[name="${fieldIDs.store}"]`);
 
-        // Si el campo principal no existe, no hacemos nada todavía
         if (!storeField) return false;
 
         let count = 0;
         Object.keys(fieldIDs).forEach(key => {
             const el = document.querySelector(`textarea[name="${fieldIDs[key]}"]`);
             if (el && urlParams.has(key)) {
-                const val = urlParams.get(key).replace(/_/g, ' ');
+                let val = urlParams.get(key);
+                
+                // LÓGICA SELECTIVA:
+                // Solo traducimos guiones a espacios si NO son los campos de lista
+                if (key !== 'hubheros' && key !== 'packagessaved') {
+                    val = val.replace(/_/g, ' ');
+                }
+                
                 forceValue(el, val);
                 count++;
             }
@@ -94,11 +100,10 @@
                 if (submitBtn && submitBtn.closest('button')) {
                     submitBtn.closest('button').click();
                 }
-            }, 1000); // 1 segundo de margen para que Amazon procese los datos
+            }, 1000);
         }
         return count >= 9;
     }
-
     // --- LÓGICA DE REINTENTO (POLLING) ---
     let attempts = 0;
     const maxAttempts = 20; // Reintenta durante 10 segundos (20 * 500ms)
