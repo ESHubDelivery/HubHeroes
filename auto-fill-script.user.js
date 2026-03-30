@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HH Auto-Fill - All-in-One
 // @namespace    tampermonkey.net/
-// @version      3.2
+// @version      3.3
 // @description  Rellena y envía automáticamente el survey HH_SIM_Test con un solo clic
 // @author       HubHeroes Team
 // @match        https://pulse.aws/survey/KERWN7PR*
@@ -79,8 +79,7 @@
                 let val = urlParams.get(key);
                 
                 // LÓGICA SELECTIVA:
-                // Solo traducimos guiones a espacios si NO son los campos de lista
-                if (key !== 'hubheros' && key !== 'packagessaved') {
+                if (key === 'reason') {
                     val = val.replace(/_/g, ' ');
                 }
                 
