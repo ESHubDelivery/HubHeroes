@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         HH Auto-Fill - All-in-One
 // @namespace    tampermonkey.net/
-// @version      3.3
+// @version      3.3.1
 // @description  Rellena y envía automáticamente el survey HH_SIM_Test con un solo clic
-// @author       HubHeroes Team
+// @author       HubRescue Team
 // @match        https://pulse.aws/survey/KERWN7PR*
 // @updateURL    https://raw.githubusercontent.com/ESHubDelivery/HubHeroes/main/auto-fill-script.user.js
 // @downloadURL  https://raw.githubusercontent.com/ESHubDelivery/HubHeroes/main/auto-fill-script.user.js
@@ -21,7 +21,7 @@
         const hasRegistrado = bodyText.includes('registrado') || bodyText.includes('recorded');
 
         if (hasGracias && hasRegistrado) {
-            console.log("✅ Éxito detectado. Cerrando pestaña...");
+            console.log("✅ Pipeline completo detectado. Cerrando pestaña...");
             // Cambiamos el mensaje del panel si existe
             const status = document.getElementById('statusMessage');
             if (status) status.textContent = "🚀 ¡Hecho! Cerrando...";
@@ -114,7 +114,7 @@
         if (success || attempts >= maxAttempts) {
             clearInterval(checkInterval);
             if (!success) {
-                document.getElementById('statusMessage').textContent = "⚠️ Tiempo de espera agotado. Usa el botón manual.";
+                document.getElementById('statusMessage').textContent = "⚠️ Tiempo de espera agotado. Cierra la página y vuelve a pulsar el botón en la página de Hub Rescue.";
             }
         }
     }, 500);
