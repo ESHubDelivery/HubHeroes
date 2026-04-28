@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HH Auto-Fill - All-in-One
 // @namespace    tampermonkey.net/
-// @version      3.3.3
+// @version      3.3.4
 // @description  Rellena y envía automáticamente el survey HH_SIM_Test con un solo clic
 // @author       HubRescue Team
 // @match        https://pulse.aws/survey/KERWN7PR*
@@ -74,7 +74,7 @@
 
         if (!storeField) return false;
 
-        // 👇 CALCULADORA DINÁMICA DE CAMPOS ESPERADOS 👇
+        //  CALCULADORA DINÁMICA DE CAMPOS ESPERADOS 
         let expectedCount = 9; // Los 9 campos base de siempre
         if (urlParams.has('rejectedhubs')) expectedCount++;
         if (urlParams.has('unresponsivehub')) expectedCount++;
@@ -99,7 +99,7 @@
         document.getElementById('statusMessage').textContent = `✅ ${count}/${expectedCount} campos inyectados.`;
         document.getElementById('statusMessage').style.color = '#10b981';
 
-        // 👇 USAMOS LA VARIABLE EN LUGAR DEL 9 FIJO 👇
+        //  USAMOS LA VARIABLE EN LUGAR DEL 9 FIJO 
         if (count >= expectedCount) {
             setTimeout(() => {
                 const submitBtn = Array.from(document.querySelectorAll('span')).find(
