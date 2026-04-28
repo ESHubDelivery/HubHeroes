@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HH Auto-Fill - All-in-One
 // @namespace    tampermonkey.net/
-// @version      3.3.2
+// @version      3.3.3
 // @description  Rellena y envía automáticamente el survey HH_SIM_Test con un solo clic
 // @author       HubRescue Team
 // @match        https://pulse.aws/survey/KERWN7PR*
@@ -74,6 +74,11 @@
 
         if (!storeField) return false;
 
+        // 👇 CALCULADORA DINÁMICA DE CAMPOS ESPERADOS 👇
+        let expectedCount = 9; // Los 9 campos base de siempre
+        if (urlParams.has('rejectedhubs')) expectedCount++;
+        if (urlParams.has('unresponsivehub')) expectedCount++;
+
         let count = 0;
         Object.keys(fieldIDs).forEach(key => {
             const el = document.querySelector(`textarea[name="${fieldIDs[key]}"]`);
@@ -90,10 +95,12 @@
             }
         });
 
-        document.getElementById('statusMessage').textContent = `✅ ${count} campos inyectados.`;
+        // Actualizamos el mensaje para que veas el progreso real (ej: "10/10 campos inyectados")
+        document.getElementById('statusMessage').textContent = `✅ ${count}/${expectedCount} campos inyectados.`;
         document.getElementById('statusMessage').style.color = '#10b981';
 
-        if (count >= 9) {
+        // 👇 USAMOS LA VARIABLE EN LUGAR DEL 9 FIJO 👇
+        if (count >= expectedCount) {
             setTimeout(() => {
                 const submitBtn = Array.from(document.querySelectorAll('span')).find(
                     s => s.textContent.trim() === 'Registrar Drop'
@@ -103,7 +110,7 @@
                 }
             }, 1000);
         }
-        return count >= 9;
+        return count >= expectedCount;
     }
     // --- LÓGICA DE REINTENTO (POLLING) ---
     let attempts = 0;
