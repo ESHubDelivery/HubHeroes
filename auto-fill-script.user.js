@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HH Auto-Fill - All-in-One
 // @namespace    tampermonkey.net/
-// @version      3.3.4
+// @version      3.3.7
 // @description  Rellena y envía automáticamente el survey HH_SIM_Test con un solo clic
 // @author       HubRescue Team
 // @match        https://pulse.aws/survey/KERWN7PR*
@@ -48,7 +48,8 @@
         station: 'responses.78b2467c-b230-45ff-a70a-fa64336d2a2f.responseVal',
         openticket: 'responses.befbc3b8-0330-4b0c-a981-9e1a72a697d2.responseVal',
         rejectedhubs: 'responses.fc0a4355-3828-43d7-9267-3b1b55376be5.responseVal',
-        unresponsivehub: 'responses.bdec1442-5efa-486b-bf75-53eef1eb5f01.responseVal'
+        unresponsivehub: 'responses.bdec1442-5efa-486b-bf75-53eef1eb5f01.responseVal',
+        overlapping: 'responses.94583614-312b-43da-a617-40c0c5ed68b4.responseVal'
     };
 
     const panel = document.createElement('div');
